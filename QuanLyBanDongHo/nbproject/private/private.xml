@@ -4,22 +4,16 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/LTNC/BTL/QuanLyBanDongHo/src/model/NhanVien.java</file>
+            <file>file:/D:/LTNC/BTL/QuanLyBanDongHo/src/model/ChiTietHoaDonDAO.java</file>
             <file>file:/D:/LTNC/BTL/QuanLyBanDongHo/src/model/HoaDonDAO.java</file>
             <file>file:/D:/LTNC/BTL/QuanLyBanDongHo/src/model/SanPhamDAO.java</file>
-            <file>file:/D:/LTNC/BTL/QuanLyBanDongHo/src/model/NhanVienDAO.java</file>
-            <file>file:/D:/LTNC/BTL/QuanLyBanDongHo/src/model/SanPham.java</file>
-            <file>file:/D:/LTNC/BTL/QuanLyBanDongHo/src/view/jpnHoaDon.java</file>
-            <file>file:/D:/LTNC/BTL/QuanLyBanDongHo/src/view/JFrLogin.java</file>
-            <file>file:/D:/LTNC/BTL/QuanLyBanDongHo/src/model/ChiTietHoaDonDAO.java</file>
-            <file>file:/D:/LTNC/BTL/QuanLyBanDongHo/src/model/UserDAO.java</file>
+            <file>file:/D:/LTNC/BTL/QuanLyBanDongHo/src/model/KhachHangDAO.java</file>
             <file>file:/D:/LTNC/BTL/QuanLyBanDongHo/src/view/JFrMain.java</file>
+            <file>file:/D:/LTNC/BTL/QuanLyBanDongHo/src/model/NhanVienDAO.java</file>
             <file>file:/D:/LTNC/BTL/QuanLyBanDongHo/src/view/JFrChonKH.java</file>
-            <file>file:/D:/LTNC/BTL/QuanLyBanDongHo/src/model/ChiTietHoaDon.java</file>
-            <file>file:/D:/LTNC/BTL/QuanLyBanDongHo/src/model/HoaDon.java</file>
-            <file>file:/D:/LTNC/BTL/QuanLyBanDongHo/src/model/User.java</file>
-            <file>file:/D:/LTNC/BTL/QuanLyBanDongHo/src/view/jpnSanPham.java</file>
+            <file>file:/D:/LTNC/BTL/QuanLyBanDongHo/src/view/JFrLogin.java</file>
+            <file>file:/D:/LTNC/BTL/QuanLyBanDongHo/src/model/KhachHang.java</file>
             <file>file:/D:/LTNC/BTL/QuanLyBanDongHo/src/view/jpnBanHang.java</file>
-            <file>file:/D:/LTNC/BTL/QuanLyBanDongHo/src/Database/DatabaseUtils.java</file>
         </group>
     </open-files>
 </project-private>

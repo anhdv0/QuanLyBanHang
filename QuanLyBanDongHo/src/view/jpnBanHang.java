@@ -16,6 +16,7 @@ import model.ChiTietHoaDon;
 import model.ChiTietHoaDonDAO;
 import model.HoaDon;
 import model.HoaDonDAO;
+import model.KhachHang;
 import model.SanPham;
 import model.SanPhamDAO;
 
@@ -78,7 +79,7 @@ public class jpnBanHang extends javax.swing.JPanel {
         jPanel5 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        ChonKH = new javax.swing.JButton();
         lbIdKhachHang = new javax.swing.JLabel();
         lbTenKhachHang = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -387,15 +388,15 @@ public class jpnBanHang extends javax.swing.JPanel {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setText("Tên khách hàng:");
 
-        jButton4.setBackground(new java.awt.Color(255, 204, 204));
-        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/chon16.png"))); // NOI18N
-        jButton4.setText("Chọn");
-        jButton4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        ChonKH.setBackground(new java.awt.Color(255, 204, 204));
+        ChonKH.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        ChonKH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/chon16.png"))); // NOI18N
+        ChonKH.setText("Chọn");
+        ChonKH.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ChonKH.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ChonKH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                ChonKHActionPerformed(evt);
             }
         });
 
@@ -415,13 +416,11 @@ public class jpnBanHang extends javax.swing.JPanel {
                 .addGap(43, 43, 43)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(lbTenKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(lbIdKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(ChonKH, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbTenKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -434,7 +433,7 @@ public class jpnBanHang extends javax.swing.JPanel {
                             .addComponent(lbIdKhachHang)))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(33, 33, 33)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(ChonKH, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(13, 13, 13)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
@@ -727,6 +726,7 @@ public class jpnBanHang extends javax.swing.JPanel {
         lbTongTien.setText(String.valueOf(varHoaDon.getTongTien()));
         lbIdKhachHang.setText(String.valueOf(varHoaDon.getIdKhachHang()));
         lbTenKhachHang.setText(tbHoaDonCho.getValueAt(row, 2).toString());
+        txtTienKhachDua.setText(String.valueOf(varHoaDon.getTienKhachDua()));
         
         loadGioHang();
         
@@ -736,10 +736,12 @@ public class jpnBanHang extends javax.swing.JPanel {
     private void btnHuyHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyHDActionPerformed
         // TODO add your handling code here:
         HoaDonDAO hdDAO = new HoaDonDAO();
+        ChiTietHoaDonDAO cthdDAO = new ChiTietHoaDonDAO();
         if(tbHoaDonCho.getSelectedRow() == -1){
             JOptionPane.showMessageDialog(this, "Bạn chưa chọn hóa đơn");
         }
         else {
+            cthdDAO.XoaCTHD(Integer.parseInt(lbMaHoaDon.getText()));
             hdDAO.XoaHoaDon(Integer.parseInt(lbMaHoaDon.getText()));
             loadTbHoaDonCho();
             tbHoaDonCho.setRowSelectionInterval(0, 0);
@@ -976,15 +978,33 @@ public class jpnBanHang extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_btTruActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    
+    public void updateKH(KhachHang kh){
+        lbIdKhachHang.setText(String.valueOf(kh.getIdKhachHang()));
+        lbTenKhachHang.setText(kh.getTenKhachHang());
+        int row = tbHoaDonCho.getSelectedRow();
+        HoaDonDAO hdDAO = new HoaDonDAO();
+        hdDAO.UpdateIdkhHoaDon(Integer.parseInt(lbMaHoaDon.getText()), kh.getIdKhachHang());
+        loadTbHoaDonCho();
+        tbHoaDonCho.setRowSelectionInterval(row, row);
+    }
+    private void ChonKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChonKHActionPerformed
         // TODO add your handling code here:
-        JFrChonKH chonKH = new JFrChonKH();
-        chonKH.setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
+        
+        if(tbHoaDonCho.getSelectedRow() == -1){
+            JOptionPane.showMessageDialog(this, "Bạn chưa chọn hóa đơn");
+        }
+        else {
+            JFrChonKH chonKH = new JFrChonKH(this);
+            chonKH.setDefaultCloseOperation(chonKH.DISPOSE_ON_CLOSE);
+            chonKH.setVisible(true);
+        }
+    }//GEN-LAST:event_ChonKHActionPerformed
 
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ChonKH;
     private javax.swing.JButton btTru;
     private javax.swing.JButton btnCapnhat;
     private javax.swing.JButton btnCong;
@@ -994,7 +1014,6 @@ public class jpnBanHang extends javax.swing.JPanel {
     private javax.swing.JButton btnXoaAllCthd;
     private javax.swing.JButton btnXoaCTHD;
     private javax.swing.JComboBox<String> cbDanhMuc;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

@@ -108,7 +108,7 @@ public class SanPhamDAO {
             } catch (Exception e) {
             }
         }
-    }
+    } // chua xong
     public List <String> getAllDanhMuc(){
         List<String> ls = new ArrayList<>(); 
         Connection con = null;

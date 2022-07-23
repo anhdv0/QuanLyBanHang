@@ -38,7 +38,6 @@ public class HoaDonDAO {
         } catch (Exception e) {
             System.out.println("Error!");
             System.out.println(e.getMessage());
-            System.out.println(hd.getNgayBan());
         }
         finally{
             try {
@@ -141,5 +140,29 @@ public class HoaDonDAO {
             }
         }
         return null;
+    }
+    
+    public void UpdateIdkhHoaDon(int IDHD, int IDKH){
+        Connection con = null;
+        PreparedStatement sttm = null;
+        try {
+            String sSQL = "update hoadon set idkhachhang = ? where idhoadon = ?";
+            con = DatabaseUtils.getDBConnect();
+            sttm = (PreparedStatement) con.prepareStatement(sSQL);
+            sttm.setInt(1, IDKH);
+            sttm.setInt(2, IDHD);
+            sttm.executeUpdate();
+            
+        } catch (Exception e) {
+            System.out.println("Error!");
+            System.out.println(e.getMessage());
+        }
+        finally{
+            try {
+                con.close();
+                sttm.close();
+            } catch (Exception e) {
+            }
+        }
     }
 }
